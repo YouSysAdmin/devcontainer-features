@@ -12,7 +12,7 @@ GOLANGCILINT_VERSION="${GOLANGCILINTVERSION:-"latest"}"
 
 TARGET_GOROOT="${TARGET_GOROOT:-"/usr/local/go"}"
 TARGET_GOPATH="${TARGET_GOPATH:-"/go"}"
-USERNAME="${USERNAME:-"${_REMOTE_USER:-"automatic"}"}"
+USERNAME="${USERNAME:-"${_REMOTE_USER:-"dev"}"}"
 INSTALL_GO_TOOLS="${INSTALL_GO_TOOLS:-"true"}"
 
 # https://www.google.com/linuxrepositories/
