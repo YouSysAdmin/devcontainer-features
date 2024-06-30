@@ -1,6 +1,6 @@
 {
   "id": "go",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "Go",
   "documentationURL": "https://github.com/yousysadmin/devcontainer-features/go",
   "description": "Installs Go and common Go utilities. Auto-detects latest version and installs needed dependencies.",
