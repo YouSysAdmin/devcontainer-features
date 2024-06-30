@@ -1,6 +1,6 @@
 {
     "name": "TFLint CLI",
-    "id": "tflint-cli",
+    "id": "tflint",
     "version": "0.0.1",
     "description": "Terraform Linter CLI",
     "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tflint",

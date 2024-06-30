@@ -1,6 +1,6 @@
 {
     "name": "TfSwitch CLI",
-    "id": "tfswitch-cli",
+    "id": "tfswitch",
     "version": "0.0.1",
     "description": "TFSwitch CLI allows you to manage local Terraform version",
     "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tfswitch",
