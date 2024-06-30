@@ -1,12 +1,12 @@
-# lazygit (via Github Releases)
+# ripgrep (via Github Releases) (ripgrep)
 
-simple terminal UI for git commands
+ripgrep recursively searches directories for a regex pattern while respecting your gitignore.
 
 ## Example DevContainer Usage
 
 ```json
 "features": {
-    "./features/lazygit:0": {}
+    "ghcr.io/yousysadmin/devcontainer-features/ripgrep:0": {}
 }
 ```
 

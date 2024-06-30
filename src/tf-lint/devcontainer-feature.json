@@ -5,15 +5,16 @@
     "description": "Terraform Linter CLI",
     "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tflint",
     "installsAfter": [
-        "github.com/yousysadmin/devcontainer-features/common-utils"
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
     ],
     "options": {
         "version": {
             "type": "string",
             "proposals": [
-                "v0.51.1"
+                "v0.51.1",
+                "latest"
             ],
-            "default": "v0.51.1",
+            "default": "latest",
             "description": "Select the TFLint version you would like to install"
         }
     }

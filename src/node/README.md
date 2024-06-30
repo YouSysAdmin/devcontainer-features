@@ -6,7 +6,7 @@ Installs Node.js, nvm, yarn, pnpm, and needed dependencies.
 
 ```json
 "features": {
-    "github.com/yousysadmin/devcontainer-features/node:0": {}
+    "ghcr.io/yousysadmin/devcontainer-features/node:0": {}
 }
 ```
 
@@ -51,7 +51,3 @@ Debian/Ubuntu, RedHat Enterprise Linux, Fedora, Alma, and Rocky Linux distributi
 **Note**: RedHat 7 Family (RedHat, CentOS, etc.) must use Node versions less than 18 due to its system libraries and long-term support (LTS) policies.
 
 `bash` is required to execute the `install.sh` script.
-
----
-
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/devcontainers/features/blob/main/src/node/devcontainer-feature.json). Add additional notes to a `NOTES.md`._

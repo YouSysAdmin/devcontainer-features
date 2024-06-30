@@ -56,6 +56,6 @@
     "PATH": "/usr/local/share/nvm/current/bin:${PATH}"
   },
   "installsAfter": [
-    "ghcr.io/devcontainers/features/common-utils"
+    "ghcr.io/yousysadmin/devcontainer-features/common-utils"
   ]
 }

@@ -7,7 +7,7 @@ Installs Go and common Go utilities. Auto-detects latest version and installs ne
 
 ```json
 "features": {
-    "github.com/yousysadmin/devcontainer-features/go:0": {}
+    "ghcr.io/yousysadmin/devcontainer-features/go:0": {}
 }
 ```
 
@@ -31,9 +31,4 @@ Installs Go and common Go utilities. Auto-detects latest version and installs ne
 This Feature should work on recent versions of Debian/Ubuntu, RedHat Enterprise Linux, Fedora, Alma, and RockyLinux distributions with the apt, yum, dnf, or microdnf package manager installed.
 
 `bash` is required to execute the `install.sh` script.
-
-
----
-
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/devcontainers/features/blob/main/src/go/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
 

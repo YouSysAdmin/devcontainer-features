@@ -42,6 +42,6 @@
     "seccomp=unconfined"
   ],
   "installsAfter": [
-    "github.com/yousysadmin/devcontainer-features/common-utils"
+    "ghcr.io/yousysadmin/devcontainer-features/common-utils"
   ]
 }
