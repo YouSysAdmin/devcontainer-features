@@ -21,7 +21,7 @@ ADD_NON_FREE_PACKAGES="${NONFREEPACKAGES:-"false"}"
 
 MARKER_FILE="/usr/local/etc/vscode-dev-containers/common"
 
-FEATURE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+FEATURE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Debian / Ubuntu packages
 install_debian_packages() {
@@ -50,6 +50,7 @@ install_debian_packages() {
         bzip2 \
         xz-utils \
         zip \
+        unzip \
         nano \
         vim-tiny \
         less \
@@ -72,7 +73,9 @@ install_debian_packages() {
         strace \
         manpages \
         manpages-dev \
-        init-system-helpers"
+        init-system-helpers \
+        tmux \
+        git"
 
         # Include libssl1.1 if available
         if [[ ! -z $(apt-cache --names-only search ^libssl1.1$) ]]; then
@@ -97,7 +100,7 @@ install_debian_packages() {
         fi
 
         # Include git if not already installed (may be more recent than distro version)
-        if ! type git > /dev/null 2>&1; then
+        if ! type git >/dev/null 2>&1; then
             package_list="${package_list} git"
         fi
     fi
@@ -124,10 +127,10 @@ install_debian_packages() {
     echo "Packages to verify are installed: ${package_list}"
     rm -rf /var/lib/apt/lists/*
     apt-get update -y
-    apt-get -y install --no-install-recommends ${package_list} 2> >( grep -v 'debconf: delaying package configuration, since apt-utils is not installed' >&2 )
+    apt-get -y install --no-install-recommends ${package_list} 2> >(grep -v 'debconf: delaying package configuration, since apt-utils is not installed' >&2)
 
     # Install zsh (and recommended packages) if needed
-    if [ "${INSTALL_ZSH}" = "true" ] && ! type zsh > /dev/null 2>&1; then
+    if [ "${INSTALL_ZSH}" = "true" ] && ! type zsh >/dev/null 2>&1; then
         apt-get install -y zsh
     fi
 
@@ -138,8 +141,8 @@ install_debian_packages() {
     fi
 
     # Ensure at least the en_US.UTF-8 UTF-8 locale is available = common need for both applications and things like the agnoster ZSH theme.
-    if [ "${LOCALE_ALREADY_SET}" != "true" ] && ! grep -o -E '^\s*en_US.UTF-8\s+UTF-8' /etc/locale.gen > /dev/null; then
-        echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+    if [ "${LOCALE_ALREADY_SET}" != "true" ] && ! grep -o -E '^\s*en_US.UTF-8\s+UTF-8' /etc/locale.gen >/dev/null; then
+        echo "en_US.UTF-8 UTF-8" >>/etc/locale.gen
         locale-gen
         LOCALE_ALREADY_SET="true"
     fi
@@ -156,9 +159,9 @@ install_redhat_packages() {
     local package_list=""
     local remove_epel="false"
     local install_cmd=microdnf
-    if ! type microdnf > /dev/null 2>&1; then
+    if ! type microdnf >/dev/null 2>&1; then
         install_cmd=dnf
-        if ! type dnf > /dev/null 2>&1; then
+        if ! type dnf >/dev/null 2>&1; then
             install_cmd=yum
         fi
     fi
@@ -174,12 +177,12 @@ install_redhat_packages() {
             net-tools \
             psmisc \
             wget \
+            curl \
             ca-certificates \
             rsync \
             unzip \
             xz \
             zip \
-            nano \
             vim-minimal \
             less \
             jq \
@@ -192,7 +195,9 @@ install_redhat_packages() {
             grep \
             which \
             man-db \
-            strace"
+            strace \
+            tmux \
+            git"
 
         # rockylinux:9 installs 'curl-minimal' which clashes with 'curl'
         # Install 'curl' for every OS except this rockylinux:9
@@ -211,7 +216,7 @@ install_redhat_packages() {
         fi
 
         # Install git if not already installed (may be more recent than distro version)
-        if ! type git > /dev/null 2>&1; then
+        if ! type git >/dev/null 2>&1; then
             package_list="${package_list} git"
         fi
 
@@ -223,7 +228,7 @@ install_redhat_packages() {
     fi
 
     # Install zsh if needed
-    if [ "${INSTALL_ZSH}" = "true" ] && ! type zsh > /dev/null 2>&1; then
+    if [ "${INSTALL_ZSH}" = "true" ] && ! type zsh >/dev/null 2>&1; then
         package_list="${package_list} zsh"
     fi
 
@@ -263,6 +268,7 @@ install_alpine_packages() {
             unzip \
             xz \
             zip \
+            unzip \
             nano \
             vim \
             less \
@@ -282,7 +288,9 @@ install_alpine_packages() {
             which \
             ncdu \
             shadow \
-            strace
+            strace \
+            tmux \
+            git
 
         # # Include libssl1.1 if available (not available for 3.19 and newer)
         LIBSSL1_PKG=libssl1.1
@@ -291,20 +299,20 @@ install_alpine_packages() {
         fi
 
         # Install man pages - package name varies between 3.12 and earlier versions
-        if apk info man > /dev/null 2>&1; then
+        if apk info man >/dev/null 2>&1; then
             apk add --no-cache man man-pages
         else
             apk add --no-cache mandoc man-pages
         fi
 
         # Install git if not already installed (may be more recent than distro version)
-        if ! type git > /dev/null 2>&1; then
+        if ! type git >/dev/null 2>&1; then
             apk add --no-cache git
         fi
     fi
 
     # Install zsh if needed
-    if [ "${INSTALL_ZSH}" = "true" ] && ! type zsh > /dev/null 2>&1; then
+    if [ "${INSTALL_ZSH}" = "true" ] && ! type zsh >/dev/null 2>&1; then
         apk add --no-cache zsh
     fi
 
@@ -329,7 +337,7 @@ fi
 
 # Ensure that login shells get the correct path if the user updated the PATH using ENV.
 rm -f /etc/profile.d/00-restore-env.sh
-echo "export PATH=${PATH//$(sh -lc 'echo $PATH')/\$PATH}" > /etc/profile.d/00-restore-env.sh
+echo "export PATH=${PATH//$(sh -lc 'echo $PATH')/\$PATH}" >/etc/profile.d/00-restore-env.sh
 chmod +x /etc/profile.d/00-restore-env.sh
 
 # Bring in ID, ID_LIKE, VERSION_ID, VERSION_CODENAME
@@ -348,15 +356,15 @@ fi
 
 # Install packages for appropriate OS
 case "${ADJUSTED_ID}" in
-    "debian")
-        install_debian_packages
-        ;;
-    "rhel")
-        install_redhat_packages
-        ;;
-    "alpine")
-        install_alpine_packages
-        ;;
+"debian")
+    install_debian_packages
+    ;;
+"rhel")
+    install_redhat_packages
+    ;;
+"alpine")
+    install_alpine_packages
+    ;;
 esac
 
 # If in automatic mode, determine if a user already exists, if not use vscode
@@ -367,7 +375,7 @@ if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
         USERNAME=""
         POSSIBLE_USERS=("devcontainer" "vscode" "node" "codespace" "$(awk -v val=1000 -F ":" '$3==val{print $1}' /etc/passwd)")
         for CURRENT_USER in "${POSSIBLE_USERS[@]}"; do
-            if id -u ${CURRENT_USER} > /dev/null 2>&1; then
+            if id -u ${CURRENT_USER} >/dev/null 2>&1; then
                 USERNAME=${CURRENT_USER}
                 break
             fi
@@ -383,7 +391,7 @@ elif [ "${USERNAME}" = "none" ]; then
 fi
 # Create or update a non-root user to match UID/GID.
 group_name="${USERNAME}"
-if id -u ${USERNAME} > /dev/null 2>&1; then
+if id -u ${USERNAME} >/dev/null 2>&1; then
     # User exists, update if needed
     if [ "${USER_GID}" != "automatic" ] && [ "$USER_GID" != "$(id -g $USERNAME)" ]; then
         group_name="$(id -gn $USERNAME)"
@@ -409,7 +417,7 @@ fi
 
 # Add add sudo support for non-root user
 if [ "${USERNAME}" != "root" ] && [ "${EXISTING_NON_ROOT_USER}" != "${USERNAME}" ]; then
-    echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME
+    echo $USERNAME ALL=\(root\) NOPASSWD:ALL >/etc/sudoers.d/$USERNAME
     chmod 0440 /etc/sudoers.d/$USERNAME
     EXISTING_NON_ROOT_USER="${USERNAME}"
 fi
@@ -421,8 +429,8 @@ fi
 if [ "${USERNAME}" = "root" ]; then
     user_home="/root"
 # Check if user already has a home directory other than /home/${USERNAME}
-elif [ "/home/${USERNAME}" != $( getent passwd $USERNAME | cut -d: -f6 ) ]; then
-    user_home=$( getent passwd $USERNAME | cut -d: -f6 )
+elif [ "/home/${USERNAME}" != $(getent passwd $USERNAME | cut -d: -f6) ]; then
+    user_home=$(getent passwd $USERNAME | cut -d: -f6)
 else
     user_home="/home/${USERNAME}"
     if [ ! -d "${user_home}" ]; then
@@ -432,7 +440,7 @@ else
 fi
 
 # Restore user .bashrc / .profile / .zshrc defaults from skeleton file if it doesn't exist or is empty
-possible_rc_files=( ".bashrc" ".profile" )
+possible_rc_files=(".bashrc" ".profile")
 [ "$INSTALL_OH_MY_ZSH_CONFIG" == "true" ] && possible_rc_files+=('.zshrc')
 [ "$INSTALL_ZSH" == "true" ] && possible_rc_files+=('.zprofile')
 for rc_file in "${possible_rc_files[@]}"; do
@@ -447,22 +455,22 @@ done
 # Add RC snippet and custom bash prompt
 if [ "${RC_SNIPPET_ALREADY_ADDED}" != "true" ]; then
     case "${ADJUSTED_ID}" in
-        "debian")
-            global_rc_path="/etc/bash.bashrc"
-            ;;
-        "rhel")
-            global_rc_path="/etc/bashrc"
-            ;;
-        "alpine")
-            global_rc_path="/etc/bash/bashrc"
-            # /etc/bash/bashrc does not exist in alpine 3.14 & 3.15
-            mkdir -p /etc/bash
-            ;;
+    "debian")
+        global_rc_path="/etc/bash.bashrc"
+        ;;
+    "rhel")
+        global_rc_path="/etc/bashrc"
+        ;;
+    "alpine")
+        global_rc_path="/etc/bash/bashrc"
+        # /etc/bash/bashrc does not exist in alpine 3.14 & 3.15
+        mkdir -p /etc/bash
+        ;;
     esac
-    cat "${FEATURE_DIR}/scripts/rc_snippet.sh" >> ${global_rc_path}
-    cat "${FEATURE_DIR}/scripts/bash_theme_snippet.sh" >> "${user_home}/.bashrc"
+    cat "${FEATURE_DIR}/scripts/rc_snippet.sh" >>${global_rc_path}
+    cat "${FEATURE_DIR}/scripts/bash_theme_snippet.sh" >>"${user_home}/.bashrc"
     if [ "${USERNAME}" != "root" ]; then
-        cat "${FEATURE_DIR}/scripts/bash_theme_snippet.sh" >> "/root/.bashrc"
+        cat "${FEATURE_DIR}/scripts/bash_theme_snippet.sh" >>"/root/.bashrc"
         chown ${USERNAME}:${group_name} "${user_home}/.bashrc"
     fi
     RC_SNIPPET_ALREADY_ADDED="true"
@@ -470,19 +478,19 @@ fi
 
 # Optionally configure zsh and Oh My Zsh!
 if [ "${INSTALL_ZSH}" = "true" ]; then
-   if [ ! -f "${user_home}/.zprofile" ]; then
+    if [ ! -f "${user_home}/.zprofile" ]; then
         touch "${user_home}/.zprofile"
-        echo 'source $HOME/.profile' >> "${user_home}/.zprofile" # TODO: Reconsider adding '.profile' to '.zprofile'
+        echo 'source $HOME/.profile' >>"${user_home}/.zprofile" # TODO: Reconsider adding '.profile' to '.zprofile'
         chown ${USERNAME}:${group_name} "${user_home}/.zprofile"
     fi
 
     if [ "${ZSH_ALREADY_INSTALLED}" != "true" ]; then
         if [ "${ADJUSTED_ID}" = "rhel" ]; then
-             global_rc_path="/etc/zshrc"
+            global_rc_path="/etc/zshrc"
         else
             global_rc_path="/etc/zsh/zshrc"
         fi
-        cat "${FEATURE_DIR}/scripts/rc_snippet.sh" >> ${global_rc_path}
+        cat "${FEATURE_DIR}/scripts/rc_snippet.sh" >>${global_rc_path}
         ZSH_ALREADY_INSTALLED="true"
     fi
 
@@ -490,9 +498,9 @@ if [ "${INSTALL_ZSH}" = "true" ]; then
         # Fixing chsh always asking for a password on alpine linux
         # ref: https://askubuntu.com/questions/812420/chsh-always-asking-a-password-and-get-pam-authentication-failure.
         if [ ! -f "/etc/pam.d/chsh" ] || ! grep -Eq '^auth(.*)pam_rootok\.so$' /etc/pam.d/chsh; then
-            echo "auth sufficient pam_rootok.so" >> /etc/pam.d/chsh
+            echo "auth sufficient pam_rootok.so" >>/etc/pam.d/chsh
         elif [[ -n "$(awk '/^auth(.*)pam_rootok\.so$/ && !/^auth[[:blank:]]+sufficient[[:blank:]]+pam_rootok\.so$/' /etc/pam.d/chsh)" ]]; then
-            awk '/^auth(.*)pam_rootok\.so$/ { $2 = "sufficient" } { print }' /etc/pam.d/chsh > /tmp/chsh.tmp && mv /tmp/chsh.tmp /etc/pam.d/chsh
+            awk '/^auth(.*)pam_rootok\.so$/ { $2 = "sufficient" } { print }' /etc/pam.d/chsh >/tmp/chsh.tmp && mv /tmp/chsh.tmp /etc/pam.d/chsh
         fi
 
         chsh --shell /bin/zsh ${USERNAME}
@@ -527,7 +535,7 @@ if [ "${INSTALL_ZSH}" = "true" ]; then
 
         # Add devcontainer .zshrc template
         if [ "$INSTALL_OH_MY_ZSH_CONFIG" = "true" ]; then
-            echo -e "$(cat "${template_path}")\nDISABLE_AUTO_UPDATE=true\nDISABLE_UPDATE_PROMPT=true" > ${user_rc_file}
+            echo -e "$(cat "${template_path}")\nDISABLE_AUTO_UPDATE=true\nDISABLE_UPDATE_PROMPT=true" >${user_rc_file}
             sed -i -e 's/ZSH_THEME=.*/ZSH_THEME="devcontainers"/g' ${user_rc_file}
         fi
 
@@ -579,6 +587,6 @@ echo -e "\
     LOCALE_ALREADY_SET=${LOCALE_ALREADY_SET}\n\
     EXISTING_NON_ROOT_USER=${EXISTING_NON_ROOT_USER}\n\
     RC_SNIPPET_ALREADY_ADDED=${RC_SNIPPET_ALREADY_ADDED}\n\
-    ZSH_ALREADY_INSTALLED=${ZSH_ALREADY_INSTALLED}" > "${MARKER_FILE}"
+    ZSH_ALREADY_INSTALLED=${ZSH_ALREADY_INSTALLED}" >"${MARKER_FILE}"
 
 echo "Done!"
