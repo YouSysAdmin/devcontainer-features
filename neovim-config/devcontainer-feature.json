@@ -1,0 +1,17 @@
+{
+    "id": "neovim-config",
+    "version": "0.0.1",
+    "name": "Neovim config",
+    "description": "Installs Neovim config files for user",
+    "containerEnv": {},
+    "installsAfter": [
+        "github.com/yousysadmin/devcontainer-features/common-utils"
+    ],
+    "options": {
+        "username": {
+            "type": "string",
+            "default": "dev",
+            "description": "user for what install configs"
+        }
+    }
+}

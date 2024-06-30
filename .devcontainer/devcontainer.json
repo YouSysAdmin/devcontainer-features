@@ -1,0 +1,58 @@
+{
+  "image": "ghcr.io/yousysadmin/devcontainer-base-images:base-universal",
+  "features": {
+    "github.com/yousysadmin/devcontainer-features/common-utils": {
+      "installZsh": "true",
+      "configureZshAsDefaultShell": "true",
+      "username": "dev",
+      "userUid": "1000",
+      "userGid": "1000",
+      "upgradePackages": "false"
+    },
+    "github.com/yousysadmin/devcontainer-features/tf-switch": {},
+    "github.com/yousysadmin/devcontainer-features/tf-lint": {},
+    "github.com/yousysadmin/devcontainer-features/tfsec": {},
+    "github.com/yousysadmin/devcontainer-features/rbenv": {},
+    "github.com/yousysadmin/devcontainer-features/chamber": {},
+    "github.com/yousysadmin/devcontainer-features/ripgrep": {},
+    "github.com/yousysadmin/devcontainer-features/lazygit": {},
+    "github.com/yousysadmin/devcontainer-features/go": {},
+    // Needed to access a GitHub devel container over SSH
+    "ghcr.io/devcontainers/features/sshd:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.autopep8",
+        "rebornix.ruby",
+        "rubocop.vscode-rubocop",
+        "AmazonWebServices.aws-toolkit-vscode",
+        "golang.Go",
+        "hashicorp.terraform",
+        "tfsec.tfsec",
+        "redhat.ansible"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python",
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.autopep8"
+        },
+        "terraform.languageServer.enable": true,
+        "terraform.languageServer.args": [
+          "serve"
+        ]
+      }
+    }
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Use 'postCreateCommand' and/or 'postStartCommand' to run commands after the container is created or start.
+  // "postCreateCommand": "/bin/bash .devcontainer/postcreate.sh",
+  // "postStartCommand": "/bin/bash .devcontainer/poststart.sh",
+  // Replace when using a ptrace-based debugger like C++, Go, and Rust
+  // "runArgs": [ "--init", "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
+  // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "dev"
+}

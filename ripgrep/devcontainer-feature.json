@@ -1,0 +1,20 @@
+{
+  "id": "ripgrep",
+  "version": "0.0.1",
+  "name": "ripgrep (via Github Releases)",
+  "documentationURL": "https://github.com/yousysadmin/devcontainer-features/ripgrep",
+  "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore.",
+  "options": {
+    "version": {
+      "default": "latest",
+      "description": "Select the version to install.",
+      "proposals": [
+        "latest"
+      ],
+      "type": "string"
+    }
+  },
+  "installsAfter": [
+    "github.com/yousysadmin/devcontainer-features/common-utils"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+    "id": "rbenv",
+    "version": "0.0.1",
+    "name": "Ruby (via rbenv)",
+    "description": "Installs Ruby, rbenv, ruby-build and libraries needed to build Ruby",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "shopify.ruby-lsp"
+            ]
+        }
+    },
+    "containerEnv": {},
+    "installsAfter": [
+        "github.com/yousysadmin/devcontainer-features/common-utils"
+    ],
+    "options": {
+        "username": {
+            "type": "string",
+            "default": "dev",
+            "description": "user for what install rbenv"
+        },
+        "version": {
+            "type": "string",
+            "default": "3.1.4",
+            "description": "The ruby version to be installed"
+        }
+    }
+}
