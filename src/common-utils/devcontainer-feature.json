@@ -12,7 +12,7 @@
         },
         "configureZshAsDefaultShell": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "Change default shell to ZSH?"
         },
         "installOhMyZsh": {
