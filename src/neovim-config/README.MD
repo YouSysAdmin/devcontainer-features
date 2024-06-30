@@ -1,2 +1,0 @@
-# Instal user cofig AstroNvim 
-
