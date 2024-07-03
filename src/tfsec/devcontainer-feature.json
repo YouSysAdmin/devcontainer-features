@@ -1,6 +1,6 @@
 {
     "id": "tfsec",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "name": "tfsec (via Github Releases)",
     "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tfsec",
     "description": "tfsec is a static analysis security scanner for your Terraform code. Designed to run locally and in your CI pipelines, developer-friendly output and fully documented checks mean detection and remediation can take place as quickly and efficiently as possible",

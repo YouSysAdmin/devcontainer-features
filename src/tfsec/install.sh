@@ -15,7 +15,7 @@ $nanolayer_location \
     install \
     devcontainer-feature \
     "ghcr.io/devcontainers-contrib/features/gh-release:1.0.23" \
-    --option repo='aquasecurity/tfsec' --option binaryNames='tfsec' --option version="$VERSION"
+    --option repo='aquasecurity/tfsec' --option binaryNames='tfsec' --option version="$VERSION" --option assetRegex='^(?!.*(checkgen|tar))'
 
 
 
