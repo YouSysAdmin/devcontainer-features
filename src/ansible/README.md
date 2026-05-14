@@ -18,6 +18,12 @@ Installs ansible-core and ansible-lint into an isolated venv at /usr/local/share
 | version | ansible-core version to install (e.g. '2.17.5'), or 'latest'. | string | latest |
 | lintVersion | ansible-lint version to install (e.g. '24.9.0'), or 'latest'. | string | latest |
 
+## Customizations
+
+### VS Code Extensions
+
+- `redhat.ansible`
+
 
 
 ---

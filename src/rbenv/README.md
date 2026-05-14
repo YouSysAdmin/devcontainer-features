@@ -16,7 +16,7 @@ Installs Ruby, rbenv, ruby-build and libraries needed to build Ruby
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | username | user for what install rbenv | string | dev |
-| version | The ruby version to be installed | string | 3.1.4 |
+| version | The ruby version to be installed | string | 3.3.6 |
 
 ## Customizations
 
