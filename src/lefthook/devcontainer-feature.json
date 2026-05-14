@@ -1,0 +1,20 @@
+{
+    "id": "lefthook",
+    "version": "0.0.1",
+    "name": "Lefthook",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/lefthook",
+    "description": "Installs Lefthook — a fast and powerful Git hooks manager.",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "Lefthook release tag to install (e.g. 'v1.10.0'), or 'latest'."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}

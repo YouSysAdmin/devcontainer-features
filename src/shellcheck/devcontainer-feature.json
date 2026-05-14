@@ -1,0 +1,18 @@
+{
+    "id": "shellcheck",
+    "version": "0.0.1",
+    "name": "ShellCheck",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/shellcheck",
+    "description": "Installs ShellCheck — a static analysis tool for shell scripts. Uses the system package manager.",
+    "options": {},
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "timonwong.shellcheck"
+            ]
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "id": "shfmt",
+    "version": "0.0.1",
+    "name": "shfmt",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/shfmt",
+    "description": "Installs shfmt — a shell script formatter (POSIX, Bash, mksh).",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "shfmt release tag to install (e.g. 'v3.10.0'), or 'latest'."
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "mkhl.shfmt"
+            ]
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}

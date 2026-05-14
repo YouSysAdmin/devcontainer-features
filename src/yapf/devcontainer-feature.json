@@ -1,0 +1,20 @@
+{
+    "id": "yapf",
+    "version": "0.0.1",
+    "name": "yapf",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/yapf",
+    "description": "Installs yapf — a Python source-code formatter — into an isolated venv at /usr/local/share/yapf-venv, with the binary symlinked into /usr/local/bin.",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "yapf version to install (e.g. '0.43.0'), or 'latest'."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}

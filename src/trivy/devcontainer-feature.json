@@ -1,0 +1,27 @@
+{
+    "id": "trivy",
+    "version": "0.0.1",
+    "name": "Trivy",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/trivy",
+    "description": "Installs Trivy — a security scanner for vulnerabilities, IaC misconfigurations, secrets, licenses, and SBOMs.",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "Trivy release tag to install (e.g. 'v0.55.0'), or 'latest'."
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "AquaSecurityOfficial.trivy-vulnerability-scanner"
+            ]
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "id": "typos",
+    "version": "0.0.1",
+    "name": "typos",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/typos",
+    "description": "Installs typos — a low-false-positive source code spell checker.",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "typos release tag to install (e.g. 'v1.28.4'), or 'latest'."
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "tekumara.typos-vscode"
+            ]
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}

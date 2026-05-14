@@ -1,0 +1,20 @@
+{
+    "id": "terraform-docs",
+    "version": "0.0.1",
+    "name": "terraform-docs",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/terraform-docs",
+    "description": "Installs terraform-docs — a utility to generate documentation from Terraform modules.",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "terraform-docs release tag to install (e.g. 'v0.19.0'), or 'latest'."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}
