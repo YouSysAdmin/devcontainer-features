@@ -9,14 +9,17 @@
       "userGid": "1000",
       "upgradePackages": "false"
     },
-    "github.com/yousysadmin/devcontainer-features/tf-switch": {},
-    "github.com/yousysadmin/devcontainer-features/tf-lint": {},
+    "github.com/yousysadmin/devcontainer-features/tfswitch": {},
+    "github.com/yousysadmin/devcontainer-features/tflint": {},
     "github.com/yousysadmin/devcontainer-features/tfsec": {},
     "github.com/yousysadmin/devcontainer-features/rbenv": {},
     "github.com/yousysadmin/devcontainer-features/chamber": {},
     "github.com/yousysadmin/devcontainer-features/ripgrep": {},
     "github.com/yousysadmin/devcontainer-features/lazygit": {},
     "github.com/yousysadmin/devcontainer-features/go": {},
+    "github.com/yousysadmin/devcontainer-features/ansible": {},
+    "github.com/yousysadmin/devcontainer-features/helix": {},
+    "github.com/yousysadmin/devcontainer-features/jc2aws": {},
     // Needed to access a GitHub devel container over SSH
     "ghcr.io/devcontainers/features/sshd:1": {}
   },

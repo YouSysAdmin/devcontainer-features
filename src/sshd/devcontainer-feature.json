@@ -2,7 +2,7 @@
     "id": "sshd",
     "version": "0.0.1",
     "name": "SSH server",
-    "documentationURL": "https://github.dev/YouSysAdmin/devcontainer-features/src/sshd",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/sshd",
     "description": "Adds a SSH server into a container so that you can use an external terminal, sftp, or SSHFS to interact with it.",
     "options": {
         "version": {

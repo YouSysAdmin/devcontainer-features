@@ -1,0 +1,20 @@
+{
+    "id": "jc2aws",
+    "version": "0.0.1",
+    "name": "jc2aws",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/jc2aws",
+    "description": "Installs jc2aws (CLI for getting temporary AWS credentials via JumpCloud SAML).",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "jc2aws release tag to install (e.g. 'v4.1.0'), or 'latest'."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}

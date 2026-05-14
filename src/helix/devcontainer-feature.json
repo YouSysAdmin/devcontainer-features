@@ -1,0 +1,23 @@
+{
+    "id": "helix",
+    "version": "0.0.1",
+    "name": "Helix",
+    "documentationURL": "https://github.com/yousysadmin/devcontainer-features/tree/master/src/helix",
+    "description": "Installs the Helix modal text editor from the official GitHub release tarball.",
+    "options": {
+        "version": {
+            "type": "string",
+            "proposals": [
+                "latest"
+            ],
+            "default": "latest",
+            "description": "Helix release tag to install (e.g. '25.07.1'), or 'latest'."
+        }
+    },
+    "containerEnv": {
+        "HELIX_RUNTIME": "/usr/local/share/helix/runtime"
+    },
+    "installsAfter": [
+        "ghcr.io/yousysadmin/devcontainer-features/common-utils"
+    ]
+}
